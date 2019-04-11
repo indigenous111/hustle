@@ -1,0 +1,49 @@
+# logging configuration
+logging:
+  file: logs/hustle.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: WARN
+    in.indigenous.hustle: DEBUG
+    
+# Spring MVC configuration
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths:
+          - /**
+  liquibase:
+    change-log: classpath:liquibase-changeLog.xml
+    enabled: true
+    url: jdbc:mariadb://localhost:3306/hustle
+    user: root
+    drop-first: false
+    contexts: dev
+# Server configuration
+server:
+  port: 8081
+  servlet:
+    context-path: /hustle
+
+# Application configuration
+application:
+  name: Hustle
+  version: 0
+  major:
+    version: 0
+  minor:
+    version: 2
+  slogan: The game goes on
+  
+# Page related configurations
+home:
+  title: Home

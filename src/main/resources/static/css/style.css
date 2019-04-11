@@ -1,0 +1,40 @@
+body {
+    background-color: beige;
+    color: navy;
+}
+
+.header {
+    background-color: darkmagenta;
+    color: navy;
+    height: 50px;
+}
+
+#first {
+    float: left;
+    width: fit-content;
+    height: inherit;
+    font-size: 32px;
+}
+
+#second {
+    float: left;
+    width: fit-content;
+    height: inherit;
+    font-size: 14px;
+    color: cyan;
+}
+
+.clear {
+    clear: both;
+}
+
+.footer {
+    background-color: darkmagenta;
+    color: white;
+    height: 20px;
+    width: 100%;
+}
+
+.footer a {
+    color: white;
+}

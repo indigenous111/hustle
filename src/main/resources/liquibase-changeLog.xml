@@ -1,0 +1,112 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	<includeAll path="db/changelog/" />
+
+	<changeSet author="abhijit.s"
+		id="create-table-upload-status-06-03-2019">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="upload_status" />
+			</not>
+		</preConditions>
+		<createTable tableName="upload_status">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="module" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="file_name" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="uploaded" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="processed" type="timestamp" />
+			<column name="status" type="varchar(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="reason" type="varchar(2000)"></column>
+		</createTable>
+	</changeSet>
+	<changeSet author="abhijit.s"
+		id="addAutoIncrement-upload-status-06-03-2019">
+		<addAutoIncrement columnDataType="bigint"
+			columnName="id" incrementBy="1" startWith="1"
+			tableName="upload_status" />
+	</changeSet>
+	<changeSet author="abhijit.s"
+		id="create-table-resources-master-06-03-2019">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="resources_master" />
+			</not>
+		</preConditions>
+		<createTable tableName="resources_master">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="abhijit.s" id="loadData-resources-master-06-03-2019" runOnChange="true">
+		<loadUpdateData  encoding="UTF-8"
+			file="db/liquibase/data/resources_master/06-03-2019.csv" quotchar="'" 
+			separator="," tableName="resources_master" primaryKey="id">
+			<column name="id" type="numeric" />
+			<column name="name" type="string" />
+		</loadUpdateData >
+	</changeSet>
+	<changeSet author="abhijit.s"
+		id="create-table-dweller-attributes-06-03-2019">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="dweller_attributes" />
+			</not>
+		</preConditions>
+		<createTable tableName="dweller_attributes">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="attribute" type="varchar(200)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="abhijit.s" id="loadData-dweller-attributes-06-03-2019" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="db/liquibase/data/dweller_attributes/06-03-2019.csv" quotchar="'" 
+			separator="," tableName="dweller_attributes" primaryKey="id">
+			<column name="id" type="numeric" />
+			<column name="attribute" type="string" />
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="abhijit.s"
+		id="create-table-dweller-master-06-03-2019">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="dweller_master" />
+			</not>
+		</preConditions>
+		<createTable tableName="dweller_master">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(200)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="abhijit.s"
+		id="addAutoIncrement-dweller-master-06-03-2019">
+		<addAutoIncrement columnDataType="bigint"
+			columnName="id" incrementBy="1" startWith="1"
+			tableName="dweller_master" />
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+spring:
+    profiles: dev
+    
+---
+spring:
+    profiles: qa
+    
+---
+spring:
+    profiles: prod
